@@ -13,7 +13,7 @@ const Navbar = () => {
                 <li><a className='hover:underline hover:decoration-purple-400' href='#'>Team</a></li>
                 <li><a className='hover:underline hover:decoration-blue-400' href='#'>Sehedules</a></li>
             </ul>
-            <button className='btn'>0 Coin <CircleDollarSign size={16} color="#EAB308" strokeWidth={2.5} /></button>
+            <button className='btn'>62000 Coin <CircleDollarSign size={16} color="#EAB308" strokeWidth={2.5} /></button>
             </div>
         </div>
     );
