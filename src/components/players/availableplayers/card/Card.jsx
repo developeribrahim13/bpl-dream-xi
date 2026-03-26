@@ -1,6 +1,7 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
-const Card = ({ Players }) => {
+const Card = ({ Players, tk, setTk, selected, setSelected }) => {
     return (
         <div className='grid grid-cols-3 grid-rows-1 gap-4 '>
             {Players.map(player => {
@@ -12,7 +13,7 @@ const Card = ({ Players }) => {
                             src={player.player_img}
                             alt={player.player_name}/>
                     </figure>
-                    <div className='p-2 space-y-1'>
+                    <div className='p-2 space-y-1 bg-linear-[-45deg] from-cyan-50 to-red-50'>
                         <h1 className='font-bold text-xl'>{player.player_name}</h1>
                             <div className='flex gap-2 items-center'>
                                 <img src={player.country_flag_img} width={20}></img>
@@ -28,7 +29,16 @@ const Card = ({ Players }) => {
                             </div>
                             <div className='flex justify-between items-center'>
                             <p className='font-medium text-red-900'> Price: ${player.price}</p>
-                            <button className='btn'>Choose Player</button>
+                            <button onClick={() => {
+                                if(tk<player.price)
+                                    toast.error("Not enough money to buy this player!")
+                                else{
+                                    setTk(tk-player.price);
+                                    toast.success(`${player.player_name} is added`);
+                                    setSelected([...selected,player])
+                                }
+                                }}
+                                className='btn'>Choose Player</button>
                             </div>
                     </div>
                 </div>
