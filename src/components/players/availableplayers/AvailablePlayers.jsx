@@ -2,7 +2,7 @@ import Card from './card/Card';
 
 const AvailablePlayers = ({players, tk, setTk, selected, setSelected, disable, setDisable}) => {
     return (
-        <div>
+        <div className='max-w-full mx-auto'>
             <Card
              players={players}
              tk={tk}

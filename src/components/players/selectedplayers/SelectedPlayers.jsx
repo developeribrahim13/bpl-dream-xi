@@ -2,12 +2,11 @@ import { Trash2 } from 'lucide-react';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const SelectedPlayers = ({selected, setSelected, tk, setTk, setDisable}) => {
+const SelectedPlayers = ({selected, setSelected, tk, setTk,}) => {
     const handleDeleteSelected = (plyr) => {
         setTk(tk+plyr.price)
         const dlt = selected.filter(elmnt=> elmnt.id!=plyr.id);
         setSelected(dlt)
-        setDisable(false)
         toast(`${plyr.player_name} remove form the list!`)
     }
     return (

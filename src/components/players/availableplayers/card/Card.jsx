@@ -16,11 +16,11 @@ const Card = ({ players, tk, setTk, selected, setSelected }) => {
     }
 
     return (
-        <div className='grid grid-cols-3 grid-rows-1 gap-4 '>
+        <div className='grid md:grid-cols-3 grid-rows-1 gap-4'>
             {players.map(player => {
                 const disable = selected.find(p=>p.id == player.id)
             return (
-                <div key={player.id} className="card bg-base-100 w-96 shadow-cyan-200 shadow-xs">
+                <div key={player.id} className="card bg-base-100 shadow-cyan-200 shadow-xs">
                     <figure className='w-full h-[250px]'>
                         <img
                             className='w-full h-full object-cover'
@@ -43,7 +43,7 @@ const Card = ({ players, tk, setTk, selected, setSelected }) => {
                             </div>
                             <div className='flex justify-between items-center'>
                             <p className='font-medium text-red-900'> Price: ${player.price}</p>
-                            <button onClick={() =>{ {handleSelectedPlayer(player)}; setDisable(true)}}
+                            <button onClick={() => {handleSelectedPlayer(player)}}
                                 className={`btn ${disable?"btn-disabled bg-red-200":""}`}>{`${disable?'Selected':'Chosse player'}`}</button>
                             </div>
                     </div>
