@@ -1,10 +1,24 @@
-import React from 'react';
 import { toast } from 'react-toastify';
 
-const Card = ({ Players, tk, setTk, selected, setSelected }) => {
+const Card = ({ players, tk, setTk, selected, setSelected }) => {
+
+    const handleSelectedPlayer = (player) => {
+        const isSelected = selected.find(p=>p.id==player.id)
+        if(isSelected)
+            return;
+        if(tk<player.price)
+           toast.error("Not enough money to buy this player!")
+        else{
+            setTk(tk-player.price);
+            toast.success(`${player.player_name} is added`);
+            setSelected([...selected, player])
+            }
+    }
+
     return (
         <div className='grid grid-cols-3 grid-rows-1 gap-4 '>
-            {Players.map(player => {
+            {players.map(player => {
+                const disable = selected.find(p=>p.id == player.id)
             return (
                 <div key={player.id} className="card bg-base-100 w-96 shadow-cyan-200 shadow-xs">
                     <figure className='w-full h-[250px]'>
@@ -29,16 +43,8 @@ const Card = ({ Players, tk, setTk, selected, setSelected }) => {
                             </div>
                             <div className='flex justify-between items-center'>
                             <p className='font-medium text-red-900'> Price: ${player.price}</p>
-                            <button onClick={() => {
-                                if(tk<player.price)
-                                    toast.error("Not enough money to buy this player!")
-                                else{
-                                    setTk(tk-player.price);
-                                    toast.success(`${player.player_name} is added`);
-                                    setSelected([...selected,player])
-                                }
-                                }}
-                                className='btn'>Choose Player</button>
+                            <button onClick={() =>{ {handleSelectedPlayer(player)}; setDisable(true)}}
+                                className={`btn ${disable?"btn-disabled bg-red-200":""}`}>{`${disable?'Selected':'Chosse player'}`}</button>
                             </div>
                     </div>
                 </div>
@@ -47,5 +53,4 @@ const Card = ({ Players, tk, setTk, selected, setSelected }) => {
         </div>
     );
 };
-
 export default Card;

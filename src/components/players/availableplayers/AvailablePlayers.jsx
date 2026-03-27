@@ -1,11 +1,16 @@
-import React, { use } from 'react';
 import Card from './card/Card';
 
-const AvailablePlayers = ({fetchPlayers, tk, setTk, selected, setSelcted}) => {
-    const Players = use(fetchPlayers);
+const AvailablePlayers = ({players, tk, setTk, selected, setSelected, disable, setDisable}) => {
     return (
         <div>
-            <Card Players={Players} tk={tk} setTk={setTk}></Card>
+            <Card
+             players={players}
+             tk={tk}
+             setTk={setTk}
+             selected={selected}
+             setSelected={setSelected}
+             disable={disable}
+             setDisable={setDisable}></Card>
         </div>
     );
 };
